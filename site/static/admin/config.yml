@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "static/images/uploads" # Media files will be stored in the repo under images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "operators" # Used in routes, e.g., /admin/collections/blog
+    label: "Operators" # Used in the UI
+    folder: "site/content/operators" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "operators"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Profile", name: "profile", widget: "markdown", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
