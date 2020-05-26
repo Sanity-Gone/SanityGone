@@ -1,0 +1,4 @@
+# redirects for Netlify - https://www.netlify.com/docs/redirects/
+
+http://sanitygone.help/*			https://sanitygone.help/:splat			301!
+http://www.sanitygone.help/*		https://sanitygone.help:splat			301!
