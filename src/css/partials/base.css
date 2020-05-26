@@ -1,0 +1,81 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-g1);
+    color: var(--color-white);
+}
+
+a,
+a:visited {
+    color: var(--color-accent1);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-accent1);
+    text-decoration: underline;
+}
+
+/*       Header      */
+header {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.site-logo {
+    fill: var(--color-white);
+    width: 19.2rem;
+    height: 2.4rem;
+}
+
+
+/*      Index Hero        */
+.hero-background {
+    width: 100vw;
+    height: 80vh;
+
+    background: linear-gradient(180deg, rgba(26, 26, 26, 0.5) 0%, rgba(26, 26, 26, 0) 40%), linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, var(--color-g1) 100%), url('/images/site-background.jpg') center;
+    background-size: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+.hero {
+    width: 100vw;
+    text-align: center;
+
+    margin-top: 25vh;
+}
+
+@media (--desktop) {
+    .hero-background {
+        width: 100vw;
+        height: 46vw;
+    }
+}
+
+/*      Typography      */
+h1 {
+    font-size: 3.6rem;
+    font-weight: 600;
+}
+
+p {
+    font-size: 1.6rem;
+    color: var(--color-white);
+}
+
+@media (--desktop) {
+    h1 {
+        font-size: 7.2rem;
+    }
+}

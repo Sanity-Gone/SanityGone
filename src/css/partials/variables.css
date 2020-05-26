@@ -1,0 +1,14 @@
+@custom-media --tablet (width >= 40rem);
+@custom-media --desktop (width >= 72rem);
+
+:root {
+    --color-g1: #1A1A1A;
+    --color-g2: #333;
+    --color-g3: #444;
+    --color-g4: #888;
+    --color-g5: #E0E0E0;
+    --color-white: #F2F2F2;
+    --color-lime: #C3FF76;
+    --color-accent1: #76CEFF;
+    --color-accent2: #FF7676;
+}

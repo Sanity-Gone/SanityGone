@@ -1,4 +1,0 @@
----
-layout: operators
-title: Texas
----

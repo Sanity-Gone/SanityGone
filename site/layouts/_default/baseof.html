@@ -5,9 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <base href="{{ if getenv "CONTEXT" }}{{ cond (eq "production" (getenv "CONTEXT")) (getenv "URL") (getenv "DEPLOY_PRIME_URL") }}{{ else }}{{ $.Site.BaseURL }}{{ end }}">
-  <title>{{ $.Site.Title }}</title>
+  <title>{{ block "title" . }}
+    {{- with .Title }}{{ . }} - {{ end }}{{ .Site.Title -}}
+  {{ end }}</title> 
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   {{ $stylesheet := .Site.Data.webpack.main }}
   {{ with $stylesheet.css }}
@@ -17,11 +21,15 @@
 
 <body>
 
-  {{ block "header" . }}{{ partial "header" . }}{{end}}
+  <div class="site-content">
 
-  {{ block "main" . }}{{end}}
+    {{ block "header" . }}{{ partial "header" . }}{{end}}
 
-  {{ block "footer" . }}{{ partial "footer" . }}{{end}}
+    {{ block "main" . }}{{end}}
+  
+    {{ block "footer" . }}{{ partial "footer" . }}{{end}}
+
+  </div>
 
   {{ $script := .Site.Data.webpack.main }}
   {{ with $script.js }}

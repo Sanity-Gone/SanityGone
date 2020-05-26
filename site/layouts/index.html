@@ -1,18 +1,8 @@
 {{ define "main" }}
-
-<h1>Hugo with Webpack, Sass, and PostCSS</h1>
-
-<h3>Hooray 🎉 - this is a new static site!</h3>
-
-<!-- render markdown content from content/_index.md -->
-{{ .Content }}
-
-    <p>List of operator files</p>
-    <ul>
-        <!-- loop through pages -->
-        {{ range .Site.RegularPages }}
-            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-        {{ end }}
-    </ul>
+    <div class="hero-background"></div>
+    <div class="hero">
+        {{/*  <img src="/images/site-background.jpg" class="hero-background">  */}}
+        <h1>Coming Soon</h1>
+    </div>
 
 {{ end }}
