@@ -2,6 +2,7 @@
 @custom-media --desktop (width >= 72rem);
 
 :root {
+    --color-keyline: #252525;
     --color-g1: #1A1A1A;
     --color-g2: #333;
     --color-g3: #444;
@@ -11,4 +12,12 @@
     --color-lime: #C3FF76;
     --color-accent1: #76CEFF;
     --color-accent2: #FF7676;
+
+    --color-accent-sun: #F9C53F;
+    --color-accent-red: #F9553F;
+    --color-accent-sky: #4ABEF0;
+    --color-accent-poison: #92E74F;
+
+    --color-white-50: #F2F2F280;
+    --color-white-15: #F2F2F226;
 }

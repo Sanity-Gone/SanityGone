@@ -21,14 +21,16 @@
 
 <body>
 
-  <div class="site-content">
+  <div class="site-wrapper">
+    {{/*  <div class="site-grid">  */}}
 
-    {{ block "header" . }}{{ partial "header" . }}{{end}}
-
-    {{ block "main" . }}{{end}}
+      {{ block "header" . }}{{ partial "header" . }}{{end}}
   
-    {{ block "footer" . }}{{ partial "footer" . }}{{end}}
-
+      {{ block "main" . }}{{end}}
+    
+      {{ block "footer" . }}{{ partial "footer" . }}{{end}}
+  
+    {{/*  </div>  */}}
   </div>
 
   {{ $script := .Site.Data.webpack.main }}

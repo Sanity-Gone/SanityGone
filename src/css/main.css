@@ -1,6 +1,13 @@
 /*
-  You can use import statements to include partials:
+  Foundational page styling
  */
 @import 'imports/reset.css';
 @import 'partials/variables.css';
 @import 'partials/base.css';
+@import 'partials/typography.css';
+@import 'partials/input.css';
+
+/*
+  Extract in the future for better performance
+ */
+@import 'layouts/op_stats.css';

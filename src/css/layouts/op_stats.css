@@ -1,0 +1,45 @@
+/* 
+    Operator Navigation Tabs 
+*/
+.op-nav {
+    margin-bottom: 4rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+}
+
+.op-nav span {
+    font-size: 3.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 7.2rem;
+
+    color: var(--color-white-50);
+}
+
+/* 
+    Operator Stats
+*/
+.op-stats-content {
+    grid-column: 1 / -1;
+}
+
+.op-stats-list {
+    display: none;
+    visibility: hidden;
+}
+
+@media (--desktop) {
+    .op-stats-list {
+        grid-column: 1 / 2;
+
+        display: initial;
+        visibility: initial;
+    }
+    
+    .op-stats-content {
+        grid-column: 3 / -1;
+    }
+}

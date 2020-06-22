@@ -4,8 +4,6 @@ html {
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     background-color: var(--color-g1);
     color: var(--color-white);
 }
@@ -26,6 +24,8 @@ header {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+
+    grid-column: 1 / -1;
 }
 
 .site-logo {
@@ -34,6 +34,41 @@ header {
     height: 2.4rem;
 }
 
+.site-wrapper {
+    display: grid;
+    grid-template-columns: 
+    [full-start] minmax(2.4em, 1fr) 
+    [main-start] minmax(0, 114em) [main-end]
+    minmax(2.4em, 1fr) [full-end];
+}
+
+.site-wrapper > * {
+    grid-column: main;
+}
+
+.util-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.2rem;
+    /* margin: 2.4rem; */
+}
+
+@media (--tablet) {
+    .util-grid {
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 1.6rem;
+        /* max-width: 64rem; */
+        /* margin: auto; */
+    }
+}
+
+@media (--desktop) {
+    .util-grid {
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 2.4rem;
+        /* max-width: 114rem; */
+    }
+}
 
 /*      Index Hero        */
 .hero-background {
@@ -50,8 +85,9 @@ header {
 }
 
 .hero {
-    width: 100vw;
+    /* width: 100vw; */
     text-align: center;
+    grid-column: 1 / -1;
 
     margin-top: 25vh;
 }
@@ -60,22 +96,5 @@ header {
     .hero-background {
         width: 100vw;
         height: 46vw;
-    }
-}
-
-/*      Typography      */
-h1 {
-    font-size: 3.6rem;
-    font-weight: 600;
-}
-
-p {
-    font-size: 1.6rem;
-    color: var(--color-white);
-}
-
-@media (--desktop) {
-    h1 {
-        font-size: 7.2rem;
     }
 }

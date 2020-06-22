@@ -8,6 +8,10 @@ title = "Sanity; Gone"
 # https://gohugo.io/getting-started/configuration/#toml-configuration
 disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
+[permalinks]
+  op-stats = "/:filename/"
+  op-guides = "/:filename/guide/"
+
 # add redirects/headers
 [outputs]
 home = ["HTML", "RSS", "REDIRECTS", "HEADERS"]

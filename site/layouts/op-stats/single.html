@@ -1,0 +1,287 @@
+{{ define "main" }}
+
+{{/*  scratchpad (aka variable) for operator related info  */}}
+{{ $operatorStats := newScratch }}
+{{ $.Scratch.Set "counter" 0}}
+{{/*  loop through data json   */}}
+{{ range $var, $op := .Site.Data.game.en.character_table }}
+
+    {{/*  match name to current page  */}}
+    {{ if eq .name ($.Param "title") }}
+
+        {{/*  adding strings/values to variables  */}}
+        {{ $operatorStats.Add "id" $var }}
+        {{ $operatorStats.Add "name" .name }}
+        {{ $operatorStats.Add "trait" .description }}
+
+        {{ $operatorStats.Add "elite-levels" (len .phases) }}
+
+        {{/*  loop elite phases; $i = elite level  */}}
+        {{ range $i, $e := .phases }} 
+
+            
+            {{ range $j, $e2 := .attributesKeyFrames }}
+
+                {{/*  Base values of each phase  */}}
+                {{ if (modBool $j 2) }} 
+                    {{ $operatorStats.Add "min-attack" (slice .data.atk) }}
+                    {{ $operatorStats.Add "min-maxHp" (slice .data.maxHp) }}
+                    {{ $operatorStats.Add "min-defense" (slice .data.def) }}
+                    {{ $operatorStats.Add "min-resist" (slice .data.magicResistance) }}
+                    {{ $operatorStats.Add "min-redeploy" (slice .data.respawnTime) }}
+                    {{ $operatorStats.Add "min-cost" (slice .data.cost) }}
+                    {{ $operatorStats.Add "min-block" (slice .data.blockCnt) }}
+                    {{ $operatorStats.Add "min-atkInterval" (slice .data.baseAttackTime) }}
+                {{end}}
+                
+                {{/*  Max values of each phase  */}}
+                {{ if not (modBool $j 2) }}   
+                    {{ $operatorStats.Add "max-levels" (slice .level) }}
+                    {{ $operatorStats.Add "max-attack" (slice .data.atk) }}
+                    {{ $operatorStats.Add "max-maxHp" (slice .data.maxHp) }}
+                    {{ $operatorStats.Add "max-defense" (slice .data.def) }}
+                    {{ $operatorStats.Add "max-resist" (slice .data.magicResistance) }}
+                    {{ $operatorStats.Add "max-redeploy" (slice .data.respawnTime) }}
+                    {{ $operatorStats.Add "max-cost" (slice .data.cost) }}
+                    {{ $operatorStats.Add "max-block" (slice .data.blockCnt) }}
+                    {{ $operatorStats.Add "max-atkInterval" (slice .data.baseAttackTime) }}
+                {{end}}
+            {{end}}
+
+            {{ if .evolveCost }}
+
+                {{ range $j, $e2 := .evolveCost }}
+                    {{ if not (modBool $i 2)}}
+                        {{ $operatorStats.SetInMap "materials-e1" .id .count }}
+                    {{ end }}
+                    {{ if (modBool $i 2)}}
+                        {{ $operatorStats.SetInMap "materials-e2" .id .count }}
+                    {{ end }}
+                {{ end }}
+
+            {{ end }}
+        {{ end }}
+
+    {{/*  Need to create else-condition if character is not in database yet  */}}
+    {{ end }}
+{{ end }}
+
+<div class="op-header">
+    <img src='/images/char_avatar/{{ $operatorStats.Get "id" }}.png' alt='{{ $operatorStats.Get "name" }}'>
+    <h1>{{ $operatorStats.Get "name" }}</h1>
+</div>
+
+<div class="op-nav">
+    <span>General</span>
+    <span>Guide</span>
+    <span>Gallery</span>
+</div>
+
+<div class="op-stats util-grid">
+    <div class="op-stats-list">
+        <ul>
+            <li>Stats</li>
+            <li>Skills</li>
+            <li>Talents</li>
+        </ul>
+    </div>
+    <div class="op-stats-content">
+        <h2 class="section-title section-title--sun">Stats</h2>
+
+        {{/*  TODO: Isolate event listeners from HTML  */}}
+        {{/*  loop through max elite levels to generate elite buttons  */}}
+        {{ range $i, $num := (seq ($operatorStats.Get "elite-levels")) }}
+            <button onclick="opStats.updateEliteLevel(this.dataset.level)" data-level="{{ $i }}">Elite {{ $i }}</button>
+        {{ end }}
+
+        <input type="range" name="level-slider" class="input-range" id="js-op-level" min="0" max="49" value="0" data-max='{{ $operatorStats.Get "max-levels" | jsonify }}' oninput="opStats.refreshStats()">
+        <p>Elite <span id="js-elite-value">N/A</span></p>
+        <p>Level <span id="js-level-value">N/A</span></p>
+
+        <br><br>
+
+        <div class="op-stat-block">
+            <h4>Attack</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-attack" | jsonify }}" data-max="{{ $operatorStats.Get "max-attack" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>Health</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-maxHp" | jsonify }}" data-max="{{ $operatorStats.Get "max-maxHp" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>Defense</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-defense" | jsonify }}" data-max="{{ $operatorStats.Get "max-defense" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>Arts Resistance</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-resist" | jsonify }}" data-max="{{ $operatorStats.Get "max-resist" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>Redeploy</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-redeploy" | jsonify }}" data-max="{{ $operatorStats.Get "max-redeploy" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>DP Cost</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-cost" | jsonify }}" data-max="{{ $operatorStats.Get "max-cost" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>Block</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-block" | jsonify }}" data-max="{{ $operatorStats.Get "max-block" | jsonify }}">N/A</p>
+        </div>
+        <div class="op-stat-block">
+            <h4>Attack Interval</h4>
+            <p class="js-op-stat" data-min="{{ $operatorStats.Get "min-atkInterval" | jsonify }}" data-max="{{ $operatorStats.Get "max-atkInterval" | jsonify }}">N/A</p>
+        </div>
+
+        <br><br>
+
+        <div class="op-stat-trait">
+            <h3>Traits</h3>
+            <p>{{ $operatorStats.Get "trait" | replaceRE "<.*?>(.*?)<.*?>" "<span class='highlight--sky'>$1</span>" | safeHTML }}</p>
+        </div>
+
+        <br><br>
+
+        <div class="op-stats-cost">
+            <h3>Elite Promotion Requirements</h3>
+            <p>Elite 1 Materials: {{ $operatorStats.Get "materials-e1" | jsonify }}</p>
+            <p>Elite 2 Materials: {{ $operatorStats.Get "materials-e2" | jsonify }}</p>
+        </div>
+    </div>
+
+    <div class="op-skills-content">
+
+    </div>
+</div>
+
+<script>
+//let opEliteLevel = 0;
+var utils = {
+    /**
+     * Interpolate 2 values with custom variables
+     * @param  {number} start - minimum value to interpolate
+     * @param  {number} end   - maximum value to interpolate
+     * @param  {number} index - current position
+     * @param  {number} max   - maximum value of index
+     * @return {number} interpolated value
+     */
+     interpolate: function(start, end, index, max) {
+        return start + ((index / max) * (end - start));
+    },
+
+    /**
+     * Update text of an HTML element
+     * @param  {string} targetID - ID of element to change
+     * @param  {number} amount   - the amount to update
+     */
+    updateText: function(targetID, amount) {
+        document.getElementById(targetID).textContent = amount;
+    }
+}
+
+var opStats = {
+    /** Current elite level */
+    opEliteLevel: 0,
+
+    /**
+     * Update elite level variable + refresh
+     * @param  {number} - amount the amount to update
+     */
+    updateEliteLevel: function(amount) {
+        this.opEliteLevel = amount;
+        this.refreshStats();
+    },
+
+    /**
+     * Get current elite level
+     * @return {number} - the elite level
+     */
+    getEliteLevel: function() {
+        return this.opEliteLevel;
+    },
+
+    /**
+     * @function sliderUpdate
+     * @param  {node} slider      - object of slider to link
+     * @param  {string} className - class name of elements to update with slider
+     */
+    sliderUpdate: function(slider, className) {
+
+        // get all objects that need to be updated
+        const opStatValues = document.getElementsByClassName(className);
+
+        // get current slider value
+        let sliderValue = slider.value;
+
+        let maxLevel = JSON.parse(slider.dataset.max)[this.opEliteLevel];
+
+        // offset value for zero based calculation
+        let sliderMax = maxLevel - 1; 
+        slider.max = sliderMax;
+
+        // slider value can never be larger than the max
+        sliderValue = Math.min(sliderValue, sliderMax);
+
+        // iterate all elements for their data
+        for (var e of opStatValues) { 
+            let minValue = JSON.parse(e.dataset.min);
+            let maxValue = JSON.parse(e.dataset.max);
+
+            // get corresponding values for current elite level
+            let currentMin = minValue[this.opEliteLevel];
+            let currentMax = maxValue[this.opEliteLevel];
+            let result = currentMin;
+
+            // interpolate data for each level if min and max are different
+            if (currentMin !== currentMax) {
+                let calc = utils.interpolate(currentMin, currentMax, sliderValue, sliderMax);
+                result = Math.round(calc);
+            }
+
+            // render to html
+            e.textContent = result;
+        }
+    },
+
+    /** Updates all elements related to the level slider */
+    refreshStats: function() {
+        const opStatSlider = document.getElementById("js-op-level");
+        this.sliderUpdate(opStatSlider, "js-op-stat");
+        utils.updateText("js-level-value", parseInt(opStatSlider.value) + 1);
+        utils.updateText('js-elite-value', this.opEliteLevel);
+    },
+
+    /** Initialization helper */
+    init: function() {
+        this.refreshStats();
+    }
+}
+
+opStats.init();
+</script>
+
+{{/*  Initial testing for querying data
+{{ range $var, $op := .Site.Data.game.en.character_table }} <!-- loop through data json -->
+    {{ if eq .name ($.Param "title") }} <!-- match name to current page -->
+        <p> <!-- display values below -->
+            {{ $var }}<br>
+            {{ .name }}<br>
+            Position: {{ .position }}<br>
+            {{ .itemUsage }}<br>
+            {{ .itemDesc }}<br>
+            
+            {{ range $i, $e := .phases }}
+                {{ range .attributesKeyFrames }} 
+                    elite {{ $i }}<br>
+                    level {{ .level }}<br>
+                    attack {{ .data.atk }} <br>
+                    maxhp {{ .data.maxHp }} <br>
+                    magic {{ .data.magicResistance }} <br><br>
+                    {{ dict "elite" $i "max-level" .level "atk" .data.atk | jsonify}}
+                {{end}}
+            {{ end }}
+        </p>
+    {{ end }}
+{{ end }}  */}}
+
+{{ end }}
