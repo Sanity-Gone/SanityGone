@@ -1,5 +1,3 @@
 ---
-title: 'Mostima'
+title: Mostima
 ---
-
-test

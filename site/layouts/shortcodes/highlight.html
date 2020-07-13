@@ -1,0 +1,7 @@
+<em class='
+    {{ if .Get "color" }}
+        highlight--{{ .Get "color" }}
+    {{ else }}
+        highlight--sky
+    {{ end }}'>
+    {{ .Inner }}</em>

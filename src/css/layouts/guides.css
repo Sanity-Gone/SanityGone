@@ -1,0 +1,140 @@
+/* 
+    Operator Stats Shortcode
+*/
+.guide-stats {
+    background: #1e1e1e;
+    row-gap: 0;
+}
+
+.guide-intro {
+    background: var(--color-black);
+    grid-column: 1 / -1;
+    padding: 2.4rem 3.2rem;
+}
+
+.guide-intro-headline {
+    display: flex;
+    margin-bottom: .8rem;
+}
+
+@media (--tablet) {
+    .guide-intro {
+        grid-column: 1 / 6;
+    }
+}
+
+/* 
+    Operator Icon and Tagline
+*/
+.guide-icon-profession {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.guide-tagline {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-left: 1.6rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+}
+
+@media (--tablet) {
+    .guide-icon-profession {
+        width: 5.6rem;
+        height: 5.6rem;
+    }
+
+    .guide-tagline {
+        font-size: 3rem;
+        height: 5.6rem;
+        line-height: 5.6rem;
+    }
+}
+
+@media (--desktop) {
+    .guide-icon-profession {
+        width: 6.4rem;
+        height: 6.4rem;
+    }
+    
+    .guide-tagline {
+        font-size: 4rem;
+        height: 6.4rem;
+        line-height: 6.4rem;
+    }
+}
+
+.guide-tagline .rarity-6 {
+    color: #F98D3F;
+}
+
+/* 
+    Operator Intro Stats (Position, Tags, Traits)
+*/
+
+.guide-stats-block {
+    width: 49%;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-top: 1.6rem;
+    display: inline-block;
+}
+
+.guide-stats-block span {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: var(--color-g3);
+    margin-bottom: .6rem;
+}
+
+@media (--tablet) {
+    .guide-stats-block {
+        width: 15rem;
+    }
+}
+
+@media (--desktop) {
+    .guide-stats-block {
+        width: 18.2rem;
+    }
+}
+
+.guide-trait {
+    grid-column: span 4;
+    padding: .8rem 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
+}
+
+.guide-trait .guide-stats-block {
+    width: 100%;
+    font-weight: normal;
+}
+
+@media (--tablet) {
+    .guide-trait {
+        grid-column: span 3;
+    }
+}
+
+@media (--desktop) {
+    .guide-trait {
+        padding: .8rem 0; /* subtracting top padding from margin of stats */
+    }
+}
+
+/* 
+    Operator Attributes
+*/
+.guide-attributes {
+    grid-column: 1/ -1;
+    padding: .8rem 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
+    background: var(--color-keyline);
+}
+
+@media (--desktop) {
+
+    .guide-attributes .guide-stats-block {
+        font-size: 2.4rem;
+    }
+}

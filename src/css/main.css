@@ -10,4 +10,5 @@
 /*
   Extract in the future for better performance
  */
-@import 'layouts/op_stats.css';
+@import 'layouts/operators.css';
+@import 'layouts/guides.css';

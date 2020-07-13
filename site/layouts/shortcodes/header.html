@@ -1,0 +1,4 @@
+<h2 class="section-title">
+    {{ .Get 0 | humanize}}
+</h2>
+{{ .Page.Scratch.Add "tablecontents" (slice (.Get 0)) }}

@@ -24,6 +24,7 @@ header {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+    z-index: 10;
 
     grid-column: 1 / -1;
 }
@@ -53,12 +54,23 @@ header {
     /* margin: 2.4rem; */
 }
 
+.util-content-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.2rem;
+}
+
 @media (--tablet) {
     .util-grid {
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 1.6rem;
         /* max-width: 64rem; */
         /* margin: auto; */
+    }
+
+    .util-content-grid {
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 1.6rem;
     }
 }
 
@@ -67,6 +79,11 @@ header {
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 2.4rem;
         /* max-width: 114rem; */
+    }
+
+    .util-content-grid {
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 2.4rem;
     }
 }
 

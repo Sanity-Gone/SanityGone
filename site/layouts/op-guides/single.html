@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+{{ partial "operator/parsing.html" . }}
+
+<div class="op-backdrop">
+    <!-- <img src='/images/char_illust/illust_{{ .Scratch.Get "id" }}_{{ .Scratch.Get "elite-level-max" }}.png' alt="" style="object-position: {{ .Params.offset }};"> -->
+    <img src='/images/char_header/{{ .Scratch.Get "id" }}.png' alt="">
+    
+</div>
+
+<div class="op-header">
+    <div class="op-header-content">
+        <h1>{{ .Scratch.Get "name" }}</h1>
+        <!-- <div class="text-echo">{{ .Scratch.Get "name" }}</div> -->
+        <span>Subheader text</span>
+    </div>
+</div>
+
+<div class="op-main util-grid">
+    
+    <div class="op-content">
+        {{ .Content }}
+        
+    </div>
+    <div class="op-list">
+        <ul>
+            {{ range .Page.Scratch.Get "tablecontents" }}
+                <li>{{ . }}</li>
+            {{ end }}
+        </ul>
+    </div>
+</div>
+
+{{ end }}

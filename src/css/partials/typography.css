@@ -8,13 +8,13 @@ h1 {
 h2 {
     font-size: 3.2rem;
     line-height: 2.4rem;
-    font-weight: 600;
+    letter-spacing: 50;
+    font-weight: normal;
     text-transform: uppercase;
 }
 h3 {
     font-size: 1.8rem;
     font-weight: 600;
-    text-transform: uppercase;
 }
 h4 {
     font-size: 1.4rem;
@@ -24,17 +24,34 @@ h4 {
 
 p {
     font-size: 1.8rem;
+    font-weight: normal;
+    line-height: 2.8rem;
     color: var(--color-white);
+    margin-bottom: 2.4rem;
 }
 
 /* 
     Specific Headers 
 */
+
 h2.section-title {
     overflow: hidden;
-    margin-bottom: 2.4rem;
+    margin: 2.4rem 0;
+    color: var(--color-g3);
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--color-g2);
 }
+/* 
+h2.section-title::after {
+    content: '';
+    width: 100%;
+    height: .1rem;
+    margin-top: -5rem;
+    background: var(--color-g2);
+    display: inline-block;
+} */
 
+/* For TITLE with line next to it
 h2.section-title::before {
     content: '';
     margin-right: 2.4rem;
@@ -69,12 +86,28 @@ h2.section-title--sky::before {
 
 h2.section-title--poison::before {
     background: var(--color-accent-poison);
-}
+} */
+
 
 .highlight--sky {
     color: var(--color-accent-sky);
+    font-style: normal;
 }
 
+.highlight--poison {
+    color: var(--color-accent-poison);
+    font-style: normal;
+}
+
+.highlight--red {
+    color: var(--color-accent-red);
+    font-style: normal;
+}
+
+.highlight--sun {
+    color: var(--color-accent-sun);
+    font-style: normal;
+}
 
 @media (--desktop) {
 }

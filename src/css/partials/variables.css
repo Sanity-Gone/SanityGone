@@ -2,10 +2,11 @@
 @custom-media --desktop (width >= 72rem);
 
 :root {
+    --color-black: #151515;
     --color-keyline: #252525;
     --color-g1: #1A1A1A;
     --color-g2: #333;
-    --color-g3: #444;
+    --color-g3: #666;
     --color-g4: #888;
     --color-g5: #E0E0E0;
     --color-white: #F2F2F2;

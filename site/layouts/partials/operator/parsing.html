@@ -1,0 +1,79 @@
+{{/*  scratchpad (aka variable) for operator related info  */}}
+{{ $operatorStats := .Scratch }}
+
+{{/*  loop through data json   */}}
+{{ range $var, $op := .Site.Data.game.en.character_table }}
+
+    {{/*  match name to current page  */}}
+    {{ if eq .name ($.Param "title") }}
+
+        {{/*  adding strings/values to variables  */}}
+        {{ $operatorStats.Add "id" $var }}
+        {{ $operatorStats.Add "name" .name }}
+        {{ $operatorStats.Add "trait" .description }}
+        {{ $operatorStats.Add "profession" (lower .profession) }}
+        {{ $operatorStats.Add "rarity" .rarity }}
+        {{ $operatorStats.Add "position" .position }}
+        {{ $operatorStats.Add "taglist" .tagList }}
+
+        {{ $operatorStats.Add "elite-levels" (len .phases) }}
+        {{ $operatorStats.Add "elite-level-max" (sub (len .phases) 1) }}
+
+        {{/*  loop elite phases; $i = elite level  */}}
+        {{ range $i, $e := .phases }} 
+
+            
+            {{ range $j, $e2 := .attributesKeyFrames }}
+
+                {{/*  Base values of each phase  */}}
+                {{ if (modBool $j 2) }} 
+                    {{ $operatorStats.Add "min-attack" (slice .data.atk) }}
+                    {{ $operatorStats.Add "min-maxHp" (slice .data.maxHp) }}
+                    {{ $operatorStats.Add "min-defense" (slice .data.def) }}
+                    {{ $operatorStats.Add "min-resist" (slice .data.magicResistance) }}
+                    {{ $operatorStats.Add "min-redeploy" (slice .data.respawnTime) }}
+                    {{ $operatorStats.Add "min-cost" (slice .data.cost) }}
+                    {{ $operatorStats.Add "min-block" (slice .data.blockCnt) }}
+                    {{ $operatorStats.Add "min-atkInterval" (slice .data.baseAttackTime) }}
+                {{end}}
+                
+                {{/*  Max values of each phase  */}}
+                {{ if not (modBool $j 2) }}   
+                    {{ $operatorStats.Add "max-levels" (slice .level) }}
+                    {{ $operatorStats.Add "max-attack" (slice .data.atk) }}
+                    {{ $operatorStats.Add "max-maxHp" (slice .data.maxHp) }}
+                    {{ $operatorStats.Add "max-defense" (slice .data.def) }}
+                    {{ $operatorStats.Add "max-resist" (slice .data.magicResistance) }}
+                    {{ $operatorStats.Add "max-redeploy" (slice .data.respawnTime) }}
+                    {{ $operatorStats.Add "max-cost" (slice .data.cost) }}
+                    {{ $operatorStats.Add "max-block" (slice .data.blockCnt) }}
+                    {{ $operatorStats.Add "max-atkInterval" (slice .data.baseAttackTime) }}
+                {{end}}
+            {{end}}
+
+            {{ if .evolveCost }}
+
+                {{ range $j, $e2 := .evolveCost }}
+                    {{ if not (modBool $i 2)}}
+                        {{ $operatorStats.SetInMap "materials-e1" .id .count }}
+                    {{ end }}
+                    {{ if (modBool $i 2)}}
+                        {{ $operatorStats.SetInMap "materials-e2" .id .count }}
+                    {{ end }}
+                {{ end }}
+
+            {{ end }}
+        {{ end }}
+
+        {{ range .skills }} 
+            {{ $operatorStats.Add "skills-list" .skillId }}
+            {{ $operatorStats.Set "materials-skill-mastery" (slice .skillId .levelUpCostCond .unlockCond) }}
+        {{ end }}
+
+        {{ range .allSkillLvlup }} 
+            {{ $operatorStats.Set "materials-skills" (slice .) }}
+        {{ end }}
+
+    {{/*  Need to create else-condition if character is not in database yet  */}}
+    {{ end }}
+{{ end }}
