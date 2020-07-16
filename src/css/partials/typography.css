@@ -3,31 +3,36 @@
 */
 h1 {
     font-size: 3.6rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
 }
 h2 {
     font-size: 3.6rem;
     line-height: 2.4rem;
-    letter-spacing: 50;
-    font-weight: 400;
+    font-weight: var(--weight-medium);
+    
     font-variant-caps: all-small-caps;
 }
 h3 {
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
 }
 h4 {
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     /* text-transform: uppercase; */
 }
 
 p {
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     line-height: 2.8rem;
     color: var(--color-white);
     padding-bottom: 2.4rem;
+}
+
+p:empty {
+    display: none;
+    visibility: hidden;
 }
 
 /* 
@@ -36,6 +41,7 @@ p {
 
 h2.section-title {
     overflow: hidden;
+    word-spacing: .5rem;
     margin: 2.4rem 0;
     color: var(--color-g3);
     padding-bottom: 1.6rem;

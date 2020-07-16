@@ -3,9 +3,8 @@ html {
 }
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Source Sans Variable', sans-serif;
+    word-spacing: .3rem;
     background-color: var(--color-g1);
     color: var(--color-white);
 }
@@ -41,7 +40,7 @@ header {
     display: grid;
     grid-template-columns: 
     [full-start] minmax(2.4em, 1fr) 
-    [main-start] minmax(0, 114em) [main-end]
+    [main-start] minmax(0, 128em) [main-end]
     minmax(2.4em, 1fr) [full-end];
 }
 

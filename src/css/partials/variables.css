@@ -1,5 +1,6 @@
-@custom-media --tablet (width >= 40rem);
-@custom-media --desktop (width >= 72rem);
+@custom-media --mini-tablet (width >= 45rem);
+@custom-media --tablet (width >= 60rem);
+@custom-media --desktop (width >= 75rem);
 
 :root {
     --color-black: #151515;
@@ -21,4 +22,29 @@
 
     --color-white-50: #F2F2F280;
     --color-white-15: #F2F2F226;
+
+    --weight-regular: 375;
+    --weight-medium: 450;
+    --weight-semibold: 575;
+    --weight-bold: 650;
+}
+
+@font-face{
+    font-family: 'Source Sans Variable';
+    font-weight: 200 900;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('/fonts/SourceSansVariable-Roman.otf.woff2') format('woff2'),
+         url('/fonts/SourceSansVariable-Roman.otf.woff') format('woff'),
+         url('/fonts/SourceSansVariable-Roman.otf') format('opentype');
+}
+
+@font-face{
+    font-family: 'Source Sans Variable';
+    font-weight: 200 900;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('/fonts/SourceSansVariable-Italic.otf.woff2') format('woff2'),
+         url('/fonts/SourceSansVariable-Italic.otf.woff') format('woff'),
+         url('/fonts/SourceSansVariable-Italic.otf') format('opentype');
 }
