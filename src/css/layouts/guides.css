@@ -3,6 +3,7 @@
 */
 .guide-stats {
     background: #1e1e1e;
+    margin-bottom: 2.4rem;
     row-gap: 0;
 }
 
@@ -15,6 +16,10 @@
 .guide-intro-headline {
     display: flex;
     margin-bottom: .8rem;
+}
+
+.guide-intro-stats .guide-stats-block {
+    width: 49%;
 }
 
 @media (--tablet) {
@@ -74,10 +79,10 @@
 */
 
 .guide-stats-block {
-    width: 49%;
+    width: 100%;
     font-size: 1.8rem;
     font-weight: 600;
-    margin-top: 1.6rem;
+    margin-top: 2.4rem;
     display: inline-block;
 }
 
@@ -86,12 +91,17 @@
     font-size: 1.4rem;
     font-weight: normal;
     color: var(--color-g3);
-    margin-bottom: .6rem;
+}
+
+@media (--mini-tablet) {
+    .guide-stats-block {
+        width: 15rem;
+    }
 }
 
 @media (--tablet) {
     .guide-stats-block {
-        width: 15rem;
+        width: 14rem;
     }
 }
 
@@ -103,7 +113,7 @@
 
 .guide-trait {
     grid-column: span 4;
-    padding: .8rem 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
+    padding: 0 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
 }
 
 .guide-trait .guide-stats-block {
@@ -114,12 +124,13 @@
 @media (--tablet) {
     .guide-trait {
         grid-column: span 3;
+        padding-left: 1.6rem;
     }
 }
 
 @media (--desktop) {
     .guide-trait {
-        padding: .8rem 0; /* subtracting top padding from margin of stats */
+        padding: 0;
     }
 }
 
@@ -130,11 +141,101 @@
     grid-column: 1/ -1;
     padding: .8rem 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
     background: var(--color-keyline);
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 14rem;
+    grid-row-gap: 2.4rem;
+}
+
+.guide-attributes-inner {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+
+    grid-column: auto;
+    grid-row: 1;
+}
+
+@media (--mini-tablet) {
+    .guide-attributes {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr) 16.4rem;
+        grid-row-gap: 0;
+    }
+
+    .guide-attributes-inner {
+        grid-column: 1 / -1;
+        grid-row: auto;
+
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+}
+
+@media (--tablet) {
+    .guide-attributes {
+        grid-template-columns: repeat(4, 14rem) 1fr;
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .guide-attributes-inner {
+        grid-column: 1 / 5;
+        grid-row: auto;
+
+        justify-content: initial;
+    }
 }
 
 @media (--desktop) {
+    .guide-attributes {
+        grid-template-columns: repeat(4, 18.2rem) 1fr;
+    }
+
+    .guide-attributes-inner {
+        grid-column: 1 / 5;
+    }
 
     .guide-attributes .guide-stats-block {
         font-size: 2.4rem;
+    }
+}
+
+/*
+    Operator Range
+*/
+.guide-range {
+    height: 14rem;
+    width: 100%;
+    text-align: center;
+    
+    align-self: flex-end;
+    
+    background: var(--color-black);
+
+    grid-column: 1 / -1;
+    grid-row: 2 / -1;
+}
+
+@media (--mini-tablet) {
+    .guide-range {
+        grid-column: 1 / -1;
+        grid-row: 3 / -1;
+        margin-top: 2.4rem;
+    }
+}
+
+@media (--tablet) {
+    .guide-range {
+        grid-column: 5 / -1;
+        grid-row: 1 / -1;
+        margin-top: 2.4rem;
+    }
+}
+
+@media (--desktop) {
+    .guide-range {
+        margin-top: 0;
+        grid-column: 5 / -1;
     }
 }

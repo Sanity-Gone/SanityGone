@@ -36,12 +36,7 @@
     margin-top: 3.2rem;
 }
 
-/* Remove phantom padding at start */
-.op-content p:first-of-type {
-    margin: 0;
-    display: none;
-}
-
+/* Remove padding at start */
 .op-content h2:first-of-type {
     margin-top: 0;
 }
@@ -169,7 +164,7 @@
     font-size: 1.4rem;
     height: 2.4rem;
     line-height: 2.4rem;
-    padding: .4rem .8rem;
+    padding: .4rem .8rem .15rem;
     margin-left: .6rem;
     background: var(--color-keyline);
 }

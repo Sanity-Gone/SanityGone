@@ -31,37 +31,44 @@
     
     {{ $maxLevel := .Page.Scratch.Get "elite-level-max" }}
     <div class="guide-attributes">
-        <div class="guide-stats-block">
-            <span>Health</span>
-            {{ index (.Page.Scratch.Get "max-maxHp") $maxLevel }}
+        <div class="guide-attributes-inner">
+            <div class="guide-stats-block">
+                <span>Health</span>
+                {{ index (.Page.Scratch.Get "max-maxHp") $maxLevel }}
+            </div>
+            <div class="guide-stats-block">
+                <span>Defense</span>
+                {{ index (.Page.Scratch.Get "max-defense") $maxLevel }}
+            </div>
+            <div class="guide-stats-block">
+                <span>Arts Resistance</span>
+                {{ index (.Page.Scratch.Get "max-resist") $maxLevel }}
+            </div>
+            <div class="guide-stats-block">
+                <span>Redeploy Time</span>
+                {{ index (.Page.Scratch.Get "max-redeploy") $maxLevel }}s
+            </div>
         </div>
-        <div class="guide-stats-block">
-            <span>Defense</span>
-            {{ index (.Page.Scratch.Get "max-defense") $maxLevel }}
+        <div class="guide-attributes-inner">
+            <div class="guide-stats-block">
+                <span>Attack</span>
+                {{ index (.Page.Scratch.Get "max-attack") $maxLevel }}
+            </div>
+            <div class="guide-stats-block">
+                <span>Attack Interval</span>
+                {{ index (.Page.Scratch.Get "max-atkInterval") $maxLevel }}s
+            </div>
+            <div class="guide-stats-block">
+                <span>Block</span>
+                {{ index (.Page.Scratch.Get "max-block") $maxLevel }}
+            </div>
+            <div class="guide-stats-block">
+                <span>DP Cost</span>
+                {{ index (.Page.Scratch.Get "max-cost") $maxLevel }}
+            </div>
         </div>
-        <div class="guide-stats-block">
-            <span>Arts Resistance</span>
-            {{ index (.Page.Scratch.Get "max-resist") $maxLevel }}
-        </div>
-        <div class="guide-stats-block">
-            <span>Redeploy Time</span>
-            {{ index (.Page.Scratch.Get "max-redeploy") $maxLevel }}s
-        </div>
-        <div class="guide-stats-block">
-            <span>Attack</span>
-            {{ index (.Page.Scratch.Get "max-attack") $maxLevel }}
-        </div>
-        <div class="guide-stats-block">
-            <span>Attack Interval</span>
-            {{ index (.Page.Scratch.Get "max-atkInterval") $maxLevel }}s
-        </div>
-        <div class="guide-stats-block">
-            <span>Block</span>
-            {{ index (.Page.Scratch.Get "max-block") $maxLevel }}
-        </div>
-        <div class="guide-stats-block">
-            <span>DP Cost</span>
-            {{ index (.Page.Scratch.Get "max-cost") $maxLevel }}
+        <div class="guide-range">
+            test
         </div>
     </div>
 </div>

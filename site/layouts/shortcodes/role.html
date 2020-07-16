@@ -1,9 +1,4 @@
-<h3 class='shortcode-roles 
-{{ if .Get "color" }} highlight--{{ .Get "color" }} {{ end }}'>
-    {{ .Get "name" }}
-</h3>
-{{ if .Get "tag" }}
-{{ range split (.Get "tag") ", " }}
+<h3 class='shortcode-roles {{ if .Get "color" }} highlight--{{ .Get "color" }} {{ end }}'>{{ .Get "name" }}</h3>
+{{ if .Get "tag" }}{{ range split (.Get "tag") ", " }}
 <span class="attribute-tag">{{ . }}</span>
-{{ end }}
-{{ end }}
+{{ end }}{{ end }}
