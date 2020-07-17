@@ -48,3 +48,17 @@
          url('/fonts/SourceSansVariable-Italic.otf.woff') format('woff'),
          url('/fonts/SourceSansVariable-Italic.otf') format('opentype');
 }
+
+.debug {
+    color: red;
+    font-size: 3rem;
+    z-index: 100;
+    background: black;
+}
+
+.debug:before {
+    content: "----DEBUG TEXT----";
+    font-weight: 600;
+    text-align: center;
+    display:block;
+}

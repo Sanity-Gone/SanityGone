@@ -1,0 +1,28 @@
+{{- .Scratch.Set "roman" "I" -}}
+{{- if eq (.Get 0) "traits" -}}
+{{ $traitName := .Page.Scratch.Get "trait-name" }}
+{{ $traitDesc := .Page.Scratch.Get "trait-description-max" }}
+    
+    <h2 class="section-title tabbed">Traits
+        <ul>
+            {{- range $i, $e := $traitName -}}
+                {{- if eq $i 1 -}}
+                    {{- $.Scratch.Set "roman" "II" -}}
+                {{- else if eq $i 2 -}}
+                    {{- $.Scratch.Set "roman" "III" -}}
+                {{- end -}}
+                    <li><a data-tab {{ if eq $i 0}}active-tab="true"{{ else }}active-tab="false"{{ end }} href="{{ $.Site.BaseURL }}#tab-trait-{{ $e | urlize }}">{{- $.Scratch.Get "roman" -}}</a></li>
+            {{- end -}}
+        </ul>
+    </h2>
+        <div class="guide-traits">
+            {{ range $i, $e := $traitName }}
+            <div {{ if eq $i 0}}active-content="true"{{ else }}hidden{{ end }} class="tab-trait-{{ $e | urlize }}">
+                <h3>{{ $e }}</h3>
+                {{ index $traitDesc $i | replaceRE "<.*?>(.*?)<.*?>" "<em class='highlight--sky'>$1</em>" | safeHTML }}<br>
+            </div>
+            {{ end }}
+        </div>
+{{- end -}}
+
+{{- .Page.Scratch.Add "tablecontents" (slice (.Get 0)) -}}

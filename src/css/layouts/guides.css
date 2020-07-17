@@ -1,3 +1,55 @@
+/*
+    Operator Tabs Shortcode
+*/
+
+h2.tabbed ul {
+    display: inline;
+    margin-left: 1.6rem;
+    position: absolute;
+}
+
+h2.tabbed li {
+    display: inline-block;
+    
+}
+
+h2.tabbed a {
+    width: 6.4rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    text-align: center;
+    display: inline-block;
+}
+
+h2.tabbed a {
+    color: var(--color-g3);
+    outline: none;
+    text-decoration: none;
+}
+
+h2.tabbed a:hover {
+    color: var(--color-g4);
+}
+h2.tabbed a:hover::after {
+    border-bottom: 1px solid var(--color-g3);
+}
+
+h2.tabbed a[active-tab=true] {
+    color: var(--color-white);
+}
+
+h2.tabbed a::after {
+    content: '';
+    width: 6.4rem;
+    position: relative;
+    bottom: .6rem;
+    display: inline-block;
+}
+
+h2.tabbed a[active-tab=true]::after {
+    border-bottom: 1px solid var(--color-white);
+}
+
 /* 
     Operator Stats Shortcode
 */
@@ -111,25 +163,25 @@
     }
 }
 
-.guide-trait {
+.guide-stat-trait {
     grid-column: span 4;
     padding: 0 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
 }
 
-.guide-trait .guide-stats-block {
+.guide-stat-trait .guide-stats-block {
     width: 100%;
     font-weight: normal;
 }
 
 @media (--tablet) {
-    .guide-trait {
+    .guide-stat-trait {
         grid-column: span 3;
-        padding-left: 1.6rem;
+        padding-left: 1.6rem; 
     }
 }
 
 @media (--desktop) {
-    .guide-trait {
+    .guide-stat-trait {
         padding: 0;
     }
 }
@@ -202,7 +254,7 @@
 }
 
 /*
-    Operator Range
+    Operator Range for Stats
 */
 .guide-range {
     height: 14rem;
@@ -238,4 +290,14 @@
         margin-top: 0;
         grid-column: 5 / -1;
     }
+}
+
+/*
+    Operator Traits
+*/
+
+.guide-traits {
+    background: var(--color-keyline);
+    padding: 2.4rem 3.2rem;
+    margin-bottom: 2.4rem;
 }

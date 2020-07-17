@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="guide-trait">
+    <div class="guide-stat-trait">
         <div class="guide-stats-block ">
             <span>Traits</span>
             {{ .Page.Scratch.Get "trait" | replaceRE "<.*?>(.*?)<.*?>" "<em class='highlight--sky'>$1</em>" | safeHTML }}

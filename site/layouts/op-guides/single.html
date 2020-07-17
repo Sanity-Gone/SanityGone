@@ -31,4 +31,49 @@
     </div>
 </div>
 
+<script>
+var opTabs = {
+    clickHandler: function(event) {
+        event.preventDefault();
+
+        let selectedTab = event.currentTarget;
+        if (selectedTab.getAttribute('active-tab') == 'true') return;
+
+        let activeTabs = document.querySelectorAll('[active-tab="true"]');
+        let activeContent = document.querySelectorAll('[active-content="true"]');
+        let targetContent = document.querySelectorAll('.' + event.currentTarget.hash.split('#')[1]);
+        if (!targetContent) return;
+
+        selectedTab.setAttribute('active-tab', 'true');
+
+        activeTabs.forEach(function(tab) {
+            tab.setAttribute('active-tab', 'false');
+        });
+
+        activeContent.forEach(function(section) {
+            section.setAttribute('active-content', 'false');
+            section.setAttribute('hidden', 'hidden');
+        });
+
+        targetContent.forEach(function (section) {
+            section.removeAttribute('hidden', 'hidden');
+            section.setAttribute('active-content', 'true');
+        });
+
+        event.preventDefault();
+    },
+    init: function() {
+        let tabs = document.querySelectorAll('[data-tab]');
+
+        //document.documentElement.addEventListener('click', opTabs.clickHandler, false);
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', opTabs.clickHandler, false);
+        });
+    }
+}
+
+opTabs.init();
+</script>
+
 {{ end }}
