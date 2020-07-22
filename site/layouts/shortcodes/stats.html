@@ -67,8 +67,8 @@
                 {{ index (.Page.Scratch.Get "max-cost") $maxLevel }}
             </div>
         </div>
-        <div class="guide-range">
-            test
+        <div class="guide-range js-range-grid" data-range='{{ last 1 (.Page.Scratch.Get "range-id") | jsonify }}'>
+            
         </div>
     </div>
 </div>

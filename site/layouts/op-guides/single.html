@@ -73,7 +73,68 @@ var opTabs = {
     }
 }
 
+var opRangeGrid = {
+    rangeTable: "/data/range_table.json",
+    createRange: function(jsonTable, className) {
+        // get all objects that need to be updated
+        const opRanges = document.getElementsByClassName(className);
+
+        if (!opRanges) return;
+
+        // iterate all elements for their data
+        for (var e of opRanges) { 
+            let id = JSON.parse(e.dataset.range);
+
+            let minRow = maxRow = minCol = maxCol = 0;
+
+            const rangeData = jsonTable[id];
+            if (!rangeData) return;
+
+            for (var i of rangeData.grids) {
+                maxRow = Math.max(maxRow, i.row);
+                minRow = Math.min(minRow, i.row);
+
+                maxCol = Math.max(maxCol, i.col);
+                minCol = Math.min(minCol, i.col);
+            };
+
+            for (let x = 0; minCol < maxCol; x++) {
+                var col = document.createElement("div"); 
+                for (let y = 0; minRow < maxRow; y++) {
+                    var row = document.createElement("div"); 
+                    row.className = "range-cell";
+                    col.appendChild(row); 
+                }
+                e.appendChild(col);
+            }
+            
+            // render to html
+            /*  e.innerText = e.innerHTML;  */
+        }
+    },
+
+    /** Updates all elements */
+    refreshGrid: function(jsonTable) {
+        this.createRange(jsonTable, "js-range-grid");
+    },
+
+    /** Initialization helper */
+    init: function() {
+        let requestURL = this.rangeTable;
+        let request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+
+        request.onload = function() {
+            const rangeTableJSON = request.response;
+            opRangeGrid.refreshGrid(rangeTableJSON);
+        }
+    }
+}
+
 opTabs.init();
+opRangeGrid.init();
 </script>
 
 {{ end }}

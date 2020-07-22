@@ -22,6 +22,8 @@
         {{/*  loop elite phases; $i = elite level  */}}
         {{- range $i, $e := .phases -}} 
 
+            {{- $operatorStats.Add "range-id" (slice .rangeId) -}}
+
             
             {{- range $j, $e2 := .attributesKeyFrames -}}
 
@@ -86,5 +88,5 @@
 {{- end -}}
 
 <div class="debug">
-    {{- index ($operatorStats.Get "trait-description-max") 0 -}}
+    Range: {{- $operatorStats.Get "range-id" | jsonify -}}
 </div>
