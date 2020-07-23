@@ -91,7 +91,7 @@ let opRangeGrid = {
             const rangeData = jsonTable[id];
             if (!rangeData) return;
 
-            // determine size of thegrids
+            // determine size of the grid
             for (let i of rangeData.grids) {
                 maxRow = Math.max(maxRow, i.row);
                 minRow = Math.min(minRow, i.row);
@@ -100,13 +100,20 @@ let opRangeGrid = {
                 minCol = Math.min(minCol, i.col);
             };
 
-            // iterate through grid in json
+            // create a grid area
             for (let y = minRow; y <= maxRow; y++) {
                 let row = document.createElement("div"); 
                 row.className = "range-row";
                 for (let x = minCol; x <= maxCol; x++) {
                     let col = document.createElement("div"); 
                     col.className = "range-cell";
+
+                    // match cells with json
+                    rangeData.grids.forEach(function(element) {
+                        if (element.col == x && element.row === y) {
+                            col.className += " range-cell--bordered";
+                        }
+                    });
 
                     // style the origin point
                     if (x === 0 && y === 0) {

@@ -184,10 +184,13 @@
 }
 
 .range-cell {
-    width: 1.6rem;
-    height: 1.6rem;
-    border: 2px solid var(--color-g2);
+    width: 1.4rem;
+    height: 1.4rem;
     margin: .2rem;
+}
+
+.range-cell--bordered {
+    border: 2px solid var(--color-g2);
 }
 
 .range-origin {
