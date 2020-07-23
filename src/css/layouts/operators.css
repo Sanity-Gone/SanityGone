@@ -168,3 +168,29 @@
     margin-left: .6rem;
     background: var(--color-keyline);
 }
+
+/* rangegrid */
+.guide-range {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.range-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.range-cell {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 2px solid var(--color-g2);
+    margin: .2rem;
+}
+
+.range-origin {
+    background: var(--color-white);
+    border: none;
+}

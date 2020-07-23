@@ -32,7 +32,7 @@
 </div>
 
 <script>
-var opTabs = {
+let opTabs = {
     clickHandler: function(event) {
         event.preventDefault();
 
@@ -73,24 +73,26 @@ var opTabs = {
     }
 }
 
-var opRangeGrid = {
+let opRangeGrid = {
     rangeTable: "/data/range_table.json",
     createRange: function(jsonTable, className) {
-        // get all objects that need to be updated
+        // get all objects that need to be updated, bail if there are no elements
         const opRanges = document.getElementsByClassName(className);
-
         if (!opRanges) return;
 
         // iterate all elements for their data
-        for (var e of opRanges) { 
+        for (let e of opRanges) { 
+            // read the range id from the element
             let id = JSON.parse(e.dataset.range);
 
             let minRow = maxRow = minCol = maxCol = 0;
 
+            // look up range in json, bail if doesn't exist
             const rangeData = jsonTable[id];
             if (!rangeData) return;
 
-            for (var i of rangeData.grids) {
+            // determine size of thegrids
+            for (let i of rangeData.grids) {
                 maxRow = Math.max(maxRow, i.row);
                 minRow = Math.min(minRow, i.row);
 
@@ -98,18 +100,25 @@ var opRangeGrid = {
                 minCol = Math.min(minCol, i.col);
             };
 
-            for (let x = 0; minCol < maxCol; x++) {
-                var col = document.createElement("div"); 
-                for (let y = 0; minRow < maxRow; y++) {
-                    var row = document.createElement("div"); 
-                    row.className = "range-cell";
-                    col.appendChild(row); 
+            // iterate through grid in json
+            for (let y = minRow; y <= maxRow; y++) {
+                let row = document.createElement("div"); 
+                row.className = "range-row";
+                for (let x = minCol; x <= maxCol; x++) {
+                    let col = document.createElement("div"); 
+                    col.className = "range-cell";
+
+                    // style the origin point
+                    if (x === 0 && y === 0) {
+                        col.className += " range-origin";
+                    }
+
+                    row.appendChild(col); 
                 }
-                e.appendChild(col);
+
+                // add elements into the grid
+                e.appendChild(row);
             }
-            
-            // render to html
-            /*  e.innerText = e.innerHTML;  */
         }
     },
 
@@ -136,5 +145,4 @@ var opRangeGrid = {
 opTabs.init();
 opRangeGrid.init();
 </script>
-
 {{ end }}
