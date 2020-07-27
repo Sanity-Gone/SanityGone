@@ -78,8 +78,8 @@
 
         {{- range .talents -}} 
             {{- range last 1 .candidates -}}
-                {{- $operatorStats.Add "trait-name" (slice .name) -}}
-                {{- $operatorStats.Add "trait-description-max" (slice .description) -}}
+                {{- $operatorStats.Add "talent-name" (slice .name) -}}
+                {{- $operatorStats.Add "talent-description-max" (slice .description) -}}
             {{- end -}}
         {{- end -}}
 

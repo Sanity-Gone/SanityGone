@@ -1,8 +1,8 @@
 {{- .Scratch.Set "index" (sub (.Get 1) 1) -}}
 
-{{- if eq (.Get 0) "traits" -}}
-{{- $traitName := index (.Page.Scratch.Get "trait-name") (.Scratch.Get "index") -}}
-<div {{ if eq (.Scratch.Get "index") 0}}active-content="true"{{ else }}hidden{{ end }} class="tab-trait-{{ $traitName | urlize }}">
+{{- if eq (.Get 0) "talent" -}}
+{{- $talentName := index (.Page.Scratch.Get "talent-name") (.Scratch.Get "index") -}}
+<div {{ if eq (.Scratch.Get "index") 0}}active-content="true"{{ else }}hidden{{ end }} class="tab-talent-{{ $talentName | urlize }}">
     {{ .Inner | safeHTML | markdownify }}
 </div>
 {{- end -}}
