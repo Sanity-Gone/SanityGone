@@ -5,7 +5,7 @@
     
             <div class="guide-tagline">
                 <span class='rarity-{{ .Page.Scratch.Get "rarity" | add 1 }}'>{{ .Page.Scratch.Get "rarity" | add 1 }}&#x2B51;</span>
-                Character Tagline
+                {{ $.Page.Params.tagline }}
             </div>
         </div>
     
@@ -15,9 +15,13 @@
                 {{ .Page.Scratch.Get "position" | lower | title}}
             </div>
         
-            <div class="guide-stats-block">
+            <!-- <div class="guide-stats-block">
                 <span>Tags</span>
                 {{ delimit (.Page.Scratch.Get "taglist") ", " }}
+            </div> -->
+            <div class="guide-stats-block">
+                <span>Regular Attack</span>
+                {{ $.Page.Params.attack }}
             </div>
         </div>
     </div>
@@ -25,7 +29,7 @@
     <div class="guide-stat-trait">
         <div class="guide-stats-block ">
             <span>Traits</span>
-            {{ .Page.Scratch.Get "trait" | replaceRE "<.*?>(.*?)<.*?>" "<em class='highlight--sky'>$1</em>" | safeHTML }}
+            {{ .Page.Scratch.Get "trait" | replaceRE "<.*?>(.*?)<.*?>" "<em class='highlight--blue'>$1</em>" | safeHTML }}
         </div>
     </div>
     
@@ -33,37 +37,61 @@
     <div class="guide-attributes">
         <div class="guide-attributes-inner">
             <div class="guide-stats-block">
-                <span>Health</span>
+                <span>
+                    <svg class="icon-health" width="10" height="10" viewBox="0 0 10 10"><path d="M4.286 4.286V0h1.428v4.286H10v1.428H5.714V10H4.286V5.714H0V4.286h4.286z"/></svg>
+                    Health
+                </span>
                 {{ index (.Page.Scratch.Get "max-maxHp") $maxLevel }}
             </div>
             <div class="guide-stats-block">
-                <span>Defense</span>
+                <span>
+                    <svg class="icon-defence" width="8" height="10" viewBox="0 0 8 10"><path d="M2.667.714H0v6.429L4 10l4-2.857V.714H5.333L4 0 2.667.714z"/></svg>
+                    Defense
+                </span>
                 {{ index (.Page.Scratch.Get "max-defense") $maxLevel }}
             </div>
             <div class="guide-stats-block">
-                <span>Arts Resistance</span>
+                <span>
+                    <svg class="icon-artres" width="10" height="10" viewBox="0 0 10 10"><path fill-rule="evenodd" d="M9 5a4 4 0 11-8 0 4 4 0 018 0zm1 0A5 5 0 110 5a5 5 0 0110 0zM5 7a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                    Arts Resistance
+                </span>
                 {{ index (.Page.Scratch.Get "max-resist") $maxLevel }}
             </div>
             <div class="guide-stats-block">
-                <span>Redeploy Time</span>
+                <span>
+                    <svg class="icon-redeploy" width="8" height="10" viewBox="0 0 8 10"><path fill-rule="evenodd" d="M0 0h8l-.72 1L4.4 5 8 10H0l3.6-5L.72 1 0 0zm4 3.844L1.952 1h4.096L4 3.844z"/></svg>
+                    Redeploy Time
+                </span>
                 {{ index (.Page.Scratch.Get "max-redeploy") $maxLevel }}s
             </div>
         </div>
         <div class="guide-attributes-inner">
             <div class="guide-stats-block">
-                <span>Attack</span>
+                <span>
+                    <svg class="icon-attack" width="10" height="10" viewBox="0 0 10 10"><path d="M1.429.714L0 0l.714 1.429L4.286 5 2.143 7.143l-.714-.714H.714v.714l.715.714L0 9.286V10h.714l1.429-1.429.714.715h.714V8.57l-.714-.714L5 5.714l2.143 2.143-.714.714v.715h.714l.714-.715L9.286 10H10v-.714L8.571 7.857l.715-.714v-.714H8.57l-.714.714L5.714 5l3.572-3.571L10 0 8.571.714 5 4.286 1.429.714z"/></svg>
+                    Attack
+                </span>
                 {{ index (.Page.Scratch.Get "max-attack") $maxLevel }}
             </div>
             <div class="guide-stats-block">
-                <span>Attack Interval</span>
+                <span>
+                    <svg class="icon-atkspd" width="10" height="10" viewBox="0 0 10 10"><path d="M6.429.714H0v.715h5.714L6.43.714zM4.286 2.857H0v.714h3.571l.715-.714zM2.143 5H0v.714h1.429L2.143 5zM8.571.714L0 9.286V10h.714l1.429-1.429.714.715h.714V8.57l-.714-.714L9.286 1.43 10 0 8.571.714z"/></svg>
+                    Attack Interval
+                </span>
                 {{ index (.Page.Scratch.Get "max-atkInterval") $maxLevel }}s
             </div>
             <div class="guide-stats-block">
-                <span>Block</span>
+                <span>
+                    <svg class="icon-block" width="8" height="10" viewBox="0 0 8 10"><path fill-rule="evenodd" d="M1 .714h1.667L4 0l1.333.714H8v6.429L4 10 0 7.143V.714h1zm2.139.882L4 1.134l.861.462.221.118h.944L1 6.322V1.714h1.917l.222-.118zM1.644 7.088L4 8.771l3-2.143v-4.45l-5.356 4.91z"/></svg>
+                    Block
+                </span>
                 {{ index (.Page.Scratch.Get "max-block") $maxLevel }}
             </div>
             <div class="guide-stats-block">
-                <span>DP Cost</span>
+                <span>
+                    <svg class="icon-cost" width="10" height="10" viewBox="0 0 10 10"><path fill-rule="evenodd" d="M5 10L0 5l5-5 5 5-5 5zm3.586-5L5 1.414 1.414 5 5 8.586 8.586 5z"/></svg>
+                    DP Cost
+                </span>
                 {{ index (.Page.Scratch.Get "max-cost") $maxLevel }}
             </div>
         </div>

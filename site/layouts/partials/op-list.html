@@ -1,0 +1,17 @@
+<div class="util-grid op-browser">
+    
+    <div class="op-content">
+        {{- range $var, $op := .Site.Data.game.en.character_table -}}
+            {{- if eq (slicestr $var 0 4) "char" -}}
+            <div class="op-card">
+                <img class="op-card" src='/images/char_portrait/{{ $var }}_1.png' alt="{{ $op.name }}"  loading="lazy">
+            </div>
+            {{- end -}}
+        {{- end -}}
+    </div>
+    <div class="op-list">
+    </div>
+</div>
+
+
+<p>test</p>
