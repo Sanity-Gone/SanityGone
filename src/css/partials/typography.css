@@ -43,11 +43,52 @@ h2.section-title {
     overflow: hidden;
     word-spacing: .5rem;
     margin: 2.4rem 0;
-    color: var(--color-g3);
+    color: var(--color-light-gray);
     padding-bottom: 1.6rem;
-    border-bottom: 1px solid var(--color-g2);
+    border-bottom: 1px solid var(--color-white-15);
 }
-/* 
+
+.highlight--yellow {
+    color: var(--color-yellow);
+    font-style: normal;
+}
+
+.highlight--red {
+    color: var(--color-red);
+    font-style: normal;
+}
+
+.highlight--lightblue {
+    color: var(--color-lightblue);
+    font-style: normal;
+}
+
+.highlight--blue {
+    color: var(--color-blue);
+    font-style: normal;
+}
+
+.highlight-warmgreen {
+    color: var(--color-warmgreen);
+    font-style: normal;
+}
+
+.highlight--green {
+    color: var(--color-green);
+    font-style: normal;
+}
+
+.highlight--purple {
+    color: var(--color-purple);
+    font-style: normal;
+}
+
+.highlight--pink {
+    color: var(--color-pink);
+    font-style: normal;
+}
+
+/*  Old Header Style
 h2.section-title::after {
     content: '';
     width: 100%;
@@ -93,27 +134,3 @@ h2.section-title--sky::before {
 h2.section-title--poison::before {
     background: var(--color-accent-poison);
 } */
-
-
-.highlight--sky {
-    color: var(--color-accent-sky);
-    font-style: normal;
-}
-
-.highlight--poison {
-    color: var(--color-accent-poison);
-    font-style: normal;
-}
-
-.highlight--red {
-    color: var(--color-accent-red);
-    font-style: normal;
-}
-
-.highlight--sun {
-    color: var(--color-accent-sun);
-    font-style: normal;
-}
-
-@media (--desktop) {
-}

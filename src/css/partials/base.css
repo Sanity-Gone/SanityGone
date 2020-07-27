@@ -4,19 +4,19 @@ html {
 
 body {
     font-family: 'Source Sans Variable', sans-serif;
-    word-spacing: .3rem;
-    background-color: var(--color-g1);
+    /* word-spacing: .3rem; */
+    background-color: var(--color-bg-main);
     color: var(--color-white);
 }
 
 a,
 a:visited {
-    color: var(--color-accent1);
+    color: var(--color-blue);
     text-decoration: none;
 }
 
 a:hover {
-    color: var(--color-accent1);
+    color: var(--color-blue);
     text-decoration: underline;
 }
 
@@ -93,7 +93,7 @@ header {
     width: 100vw;
     height: 80vh;
 
-    background: linear-gradient(180deg, rgba(26, 26, 26, 0.5) 0%, rgba(26, 26, 26, 0) 40%), linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, var(--color-g1) 100%), url('/images/site-background.jpg') center;
+    background: linear-gradient(180deg, rgba(26, 26, 26, 0.5) 0%, rgba(26, 26, 26, 0) 40%), linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, var(--color-bg-main) 100%), url('/images/site-background.jpg') center;
     background-size: cover;
 
     position: absolute;

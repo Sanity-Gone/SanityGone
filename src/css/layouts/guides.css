@@ -22,16 +22,16 @@ h2.tabbed a {
 }
 
 h2.tabbed a {
-    color: var(--color-g3);
+    color: var(--color-light-gray);
     outline: none;
     text-decoration: none;
 }
 
 h2.tabbed a:hover {
-    color: var(--color-g4);
+    color: var(--color-white);
 }
 h2.tabbed a:hover::after {
-    border-bottom: 1px solid var(--color-g3);
+    border-bottom: 1px solid var(--color-light-gray);
 }
 
 h2.tabbed a[active-tab=true] {
@@ -54,7 +54,7 @@ h2.tabbed a[active-tab=true]::after {
     Operator Stats Shortcode
 */
 .guide-stats {
-    background: #1e1e1e;
+    background: var(--color-bg-1);
     margin-bottom: 2.4rem;
     row-gap: 0;
 }
@@ -123,7 +123,7 @@ h2.tabbed a[active-tab=true]::after {
 }
 
 .guide-tagline .rarity-6 {
-    color: #F98D3F;
+    color: var(--color-orange);
 }
 
 /* 
@@ -142,7 +142,7 @@ h2.tabbed a[active-tab=true]::after {
     display: block;
     font-size: 1.4rem;
     font-weight: normal;
-    color: var(--color-g3);
+    color: var(--color-light-gray);
 }
 
 @media (--mini-tablet) {
@@ -187,12 +187,51 @@ h2.tabbed a[active-tab=true]::after {
 }
 
 /* 
+    Operator Stat Icons
+*/
+.guide-stats-block svg {
+    margin-right: .4rem;
+}
+
+.guide-stats-block .icon-health {
+    fill: var(--color-warmgreen);
+}
+
+.guide-stats-block .icon-defence {
+    fill: var(--color-orange);
+}
+
+.guide-stats-block .icon-artres {
+    fill: var(--color-blue);
+}
+
+.guide-stats-block .icon-redeploy {
+    fill: var(--color-pink);
+}
+
+.guide-stats-block .icon-attack {
+    fill: var(--color-red);
+}
+
+.guide-stats-block .icon-atkspd {
+    fill: var(--color-yellow);
+}
+
+.guide-stats-block .icon-block {
+    fill: var(--color-purple);
+}
+
+.guide-stats-block .icon-cost {
+    fill: var(--color-light-gray);
+}
+
+/* 
     Operator Attributes
 */
 .guide-attributes {
     grid-column: 1/ -1;
     padding: .8rem 3.2rem 2.4rem; /* subtracting top padding from margin of stats */
-    background: var(--color-keyline);
+    background: var(--color-bg-2);
     
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -293,11 +332,11 @@ h2.tabbed a[active-tab=true]::after {
 }
 
 /*
-    Operator Traits
+    Operator Talent
 */
 
-.guide-traits {
-    background: var(--color-keyline);
+.guide-talent {
+    background: var(--color-bg-2);
     padding: 2.4rem 3.2rem;
     margin-bottom: 2.4rem;
 }

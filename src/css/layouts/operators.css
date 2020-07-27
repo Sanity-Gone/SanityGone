@@ -141,7 +141,7 @@
 .op-list li {
     font-size: 1.4rem;
     margin-bottom: 3.2rem;
-    color: var(--color-g3);
+    color: var(--color-light-gray);
 }
 
 .text-echo {
