@@ -1,5 +1,6 @@
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -7,6 +8,7 @@ body {
     /* word-spacing: .3rem; */
     background-color: var(--color-bg-main);
     color: var(--color-white);
+    scroll-behavior: smooth;
 }
 
 a,
@@ -38,10 +40,10 @@ header {
 
 .site-wrapper {
     display: grid;
-    grid-template-columns: 
-    [full-start] minmax(2.4em, 1fr) 
-    [main-start] minmax(0, 128em) [main-end]
-    minmax(2.4em, 1fr) [full-end];
+    grid-template-columns:
+        [full-start] minmax(2.4em, 1fr)
+        [main-start] minmax(0, 128em) [main-end]
+        minmax(2.4em, 1fr) [full-end];
 }
 
 .site-wrapper > * {
@@ -93,7 +95,17 @@ header {
     width: 100vw;
     height: 80vh;
 
-    background: linear-gradient(180deg, rgba(26, 26, 26, 0.5) 0%, rgba(26, 26, 26, 0) 40%), linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, var(--color-bg-main) 100%), url('/images/site-background.jpg') center;
+    background: linear-gradient(
+            180deg,
+            rgba(26, 26, 26, 0.5) 0%,
+            rgba(26, 26, 26, 0) 40%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(26, 26, 26, 0) 0%,
+            var(--color-bg-main) 100%
+        ),
+        url('/images/site-background.jpg') center;
     background-size: cover;
 
     position: absolute;

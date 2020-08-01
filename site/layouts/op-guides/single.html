@@ -16,6 +16,8 @@
     </div>
 </div>
 
+{{ partial "searchbar.html" . }}
+
 <div class="op-main util-grid">
     
     <div class="op-content">
@@ -24,9 +26,13 @@
     </div>
     <div class="op-list">
         <ul>
-            {{ range .Page.Scratch.Get "tablecontents" }}
-                <li>{{ . }}</li>
-            {{ end }}
+          {{ range .Page.Scratch.Get "tablecontents" }}
+              <li>
+                <a href="#section-{{.}}">
+                  {{.|humanize}}
+                </a>
+              </li>
+          {{ end }}
         </ul>
     </div>
 </div>
