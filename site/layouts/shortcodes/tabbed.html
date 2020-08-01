@@ -2,8 +2,8 @@
 {{- if eq (.Get 0) "talent" -}}
 {{ $talentName := .Page.Scratch.Get "talent-name" }}
 {{ $talentDesc := .Page.Scratch.Get "talent-description-max" }}
-    
-    <h2 class="section-title tabbed">Talent
+
+    <h2 class="section-title tabbed" id="section-{{.Get 0}}">Talent
         <ul>
             {{- range $i, $e := $talentName -}}
                 {{- if eq $i 1 -}}
@@ -15,14 +15,14 @@
             {{- end -}}
         </ul>
     </h2>
-        <div class="guide-talent">
-            {{ range $i, $e := $talentName }}
-            <div {{ if eq $i 0}}active-content="true"{{ else }}hidden{{ end }} class="tab-talent-{{ $e | urlize }}">
-                <h3>{{ $e }}</h3>
-                {{ index $talentDesc $i | replaceRE "<.*?>(.*?)<.*?>" "<em class='highlight--blue'>$1</em>" | safeHTML }}<br>
-            </div>
-            {{ end }}
+    <div class="guide-talent">
+        {{ range $i, $e := $talentName }}
+        <div {{ if eq $i 0}}active-content="true"{{ else }}hidden{{ end }} class="tab-talent-{{ $e | urlize }}">
+            <h3>{{ $e }}</h3>
+            {{ index $talentDesc $i | replaceRE "<.*?>(.*?)<.*?>" "<em class='highlight--blue'>$1</em>" | safeHTML }}<br>
         </div>
+        {{ end }}
+    </div>
 {{- end -}}
 
 {{- .Page.Scratch.Add "tablecontents" (slice (.Get 0)) -}}

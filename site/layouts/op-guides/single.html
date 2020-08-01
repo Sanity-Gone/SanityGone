@@ -26,9 +26,13 @@
     </div>
     <div class="op-list">
         <ul>
-            {{ range .Page.Scratch.Get "tablecontents" }}
-                <li>{{ . }}</li>
-            {{ end }}
+          {{ range .Page.Scratch.Get "tablecontents" }}
+              <li>
+                <a href="#section-{{.}}">
+                  {{.|humanize}}
+                </a>
+              </li>
+          {{ end }}
         </ul>
     </div>
 </div>

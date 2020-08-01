@@ -4,3 +4,4 @@ site/resources/
 site/data/webpack.json
 .DS_Store
 .idea
+.prettierignore

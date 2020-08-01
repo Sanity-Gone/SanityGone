@@ -3,12 +3,13 @@
     border: 0;
     padding: 5px 10px;
     width: 100%;
-    font-size: 1.5rem; 
-    margin: 5px 0; 
+    font-size: 1.5rem;
+    margin: 5px 0;
 }
 
 #searchbar_results {
-    position: relative; 
+    position: relative;
+    z-index: 1000;
 }
 
 #searchbar_results .no_results {
@@ -25,8 +26,9 @@
     width: 100%;
 }
 
-#searchbar_results li a, #searchbar_results .no_results {
-    display: flex; 
+#searchbar_results li a,
+#searchbar_results .no_results {
+    display: flex;
     width: 100%;
     background-color: var(--color-bg-main);
     border-radius: 5px;
@@ -39,7 +41,7 @@
 }
 
 #searchbar_results li a img {
-    width: 50px; 
+    width: 50px;
     height: 50px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
