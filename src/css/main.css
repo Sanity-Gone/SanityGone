@@ -6,6 +6,7 @@
 @import 'partials/base.css';
 @import 'partials/typography.css';
 @import 'partials/input.css';
+@import 'partials/searchbar.css';
 
 /*
   Extract in the future for better performance
