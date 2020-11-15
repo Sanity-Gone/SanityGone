@@ -1,17 +1,69 @@
+{{/*  
+
+    =====
+
+    OBSOLETE  
+    USE INDEX FOR NOW
+
+    =====
+
+*/}}
+
 <div class="util-grid op-browser">
     
-    <div class="op-content">
-        {{- range $var, $op := .Site.Data.game.en.character_table -}}
-            {{- if eq (slicestr $var 0 4) "char" -}}
-            <div class="op-card">
-                <img class="op-card" src='/images/char_portrait/{{ $var }}_1.png' alt="{{ $op.name }}"  loading="lazy">
-            </div>
+    <div class="browser-grid">
+        {{- $operatorSorted := $.Scratch -}}
+
+        {{- range $op := sort .Site.Data.game.en.character_table "name" -}}
+            {{- with $op.potentialItemId -}}
+                {{- if eq (int $op.rarity) 5 -}}
+                    {{- $operatorSorted.Add "6s" (slice $op) -}}
+                {{- else if eq (int $op.rarity) 4 -}}
+                    {{- $operatorSorted.Add "5s" (slice $op) -}}
+                {{- else if eq (int $op.rarity) 3 -}}
+                    {{- $operatorSorted.Add "4s" (slice $op) -}}
+                {{- else if eq (int $op.rarity) 2 -}}
+                    {{- $operatorSorted.Add "3s" (slice $op) -}}
+                {{- else if eq (int $op.rarity) 1 -}}
+                    {{- $operatorSorted.Add "2s" (slice $op) -}}
+                {{- else if eq (int $op.rarity) 0 -}}
+                    {{- $operatorSorted.Add "1s" (slice $op) -}}
+                {{- end -}}
             {{- end -}}
+        {{- end -}}
+
+        {{- $data := $operatorSorted.Get "6s" -}}
+        {{- $data = $data | append ($operatorSorted.Get "5s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "4s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "3s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "2s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "1s") -}}
+        
+        {{- range $op := $data -}}
+            {{- $var := (strings.TrimPrefix "p_" $op.potentialItemId ) -}}
+                    {{- $oppath := (printf "%s%s" "op-guides/" $op.name ) | urlize -}}
+                    <a class="op-card {{ if not ($.Site.GetPage $oppath) }}card-invalid{{ end }}"
+                    href='{{ with $.Site.GetPage $oppath }}{{ printf "%s%s" $op.name "/guide" | urlize }}{{ end }}'>
+                        <div class="op-card-info"> 
+                            <div class="info-active">
+                                <h3>{{ $op.name }}</h3>
+                                <h4 class="rarity-{{ $op.rarity | add 1 }}">{{ strings.Repeat (add $op.rarity 1) "&#9733;" | htmlUnescape }}</h4>
+                            </div>
+                            <div class="info-hover">
+                                {{ with $.Site.GetPage $oppath }}
+                                    <h4>View Guide</h4>
+                                {{ else }}
+                                    <h4>Coming Soon</h4>
+                                {{ end }}
+                                <h4>🡢</h4>
+                            </div>
+                        </div>
+                        <img src='/images/char_portrait/{{ $var }}_1.png' alt="{{ $op.name }}"  loading="lazy">
+                    </a>
         {{- end -}}
     </div>
     <div class="op-list">
     </div>
 </div>
 
-
-<p>test</p>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>

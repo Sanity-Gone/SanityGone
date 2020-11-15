@@ -88,6 +88,30 @@ h2.section-title {
     font-style: normal;
 }
 
+.rarity-6 {
+    color: var(--color-orange);
+}
+
+.rarity-5 {
+    color: var(--color-yellow);
+}
+
+.rarity-4 {
+    color: var(--color-purple);
+}
+
+.rarity-3 {
+    color: var(--color-blue);
+}
+
+.rarity-2 {
+    color: var(--color-warmgreen);
+}
+
+.rarity-1 {
+    color: var(--color-light-gray);
+}
+
 /*  Old Header Style
 h2.section-title::after {
     content: '';

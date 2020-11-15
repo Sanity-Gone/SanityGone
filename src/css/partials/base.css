@@ -7,6 +7,8 @@ body {
     /* word-spacing: .3rem; */
     background-color: var(--color-bg-main);
     color: var(--color-white);
+
+    overflow-x: hidden;
 }
 
 a,
@@ -104,15 +106,26 @@ header {
 
 .hero {
     /* width: 100vw; */
-    text-align: center;
-    grid-column: 1 / -1;
+    text-align: left;
 
-    margin-top: 25vh;
+    margin-top: 15vh;
+}
+
+.hero h1 {
+    text-transform: uppercase;
+}
+
+.hero > * {
+    grid-column: 1 / -1;
 }
 
 @media (--desktop) {
     .hero-background {
         width: 100vw;
         height: 46vw;
+    }
+
+    .hero p {
+        grid-column: 1 / 5;
     }
 }

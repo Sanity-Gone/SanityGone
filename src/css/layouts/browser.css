@@ -1,0 +1,104 @@
+.browser-grid {
+    grid-column: 1 / -1;
+
+    display: grid;
+    /* grid-auto-flow: column; */
+    grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+    grid-gap: 1.6rem;
+}
+
+@media (--desktop) {
+    .browser-grid {
+        grid-column: 3 / -1;
+    }
+}
+
+.op-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    background: var(--color-black);
+    overflow: hidden;
+}
+
+.op-card img {
+    min-height: 15rem;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.op-card:hover {
+    cursor: pointer;
+}
+
+.op-card h3 {
+    line-height: 1;
+}
+
+.op-card-info .info-active {
+    will-change: transform, opacity;
+    transition: transform .5s ease-out, opacity .2s;
+    transform: translateY(0);
+    opacity: 1;
+
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+}
+
+.op-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    padding: 1.6rem;
+
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    will-change: height;
+    transition: height .2s ease;
+
+    color: var(--color-white);
+
+    /* required to keep elements on top when filter is applied */
+    z-index: 10;
+}
+
+.op-card:hover .op-card-info {
+    height: 100%;
+}
+
+.op-card:hover .info-active {
+    transform: translateY(2rem);
+    opacity: 0;
+}
+
+.info-hover {
+    will-change: transform, opacity;
+    transition: transform .5s ease-out, opacity .2s;
+    transform: translateY(0);
+    opacity: 0;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.op-card:hover .info-hover {
+    transform: translateY(-100%);
+    opacity: 1;
+}
+
+.card-invalid img{
+    filter: grayscale(100%);
+}
+
+.card-invalid h4[class^="rarity-"] {
+    opacity: .7;
+}
+
+.card-invalid h3,
+.card-invalid .info-hover {
+    color: var(--color-light-gray)
+}

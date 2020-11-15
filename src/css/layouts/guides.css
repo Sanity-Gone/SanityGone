@@ -122,10 +122,6 @@ h2.tabbed a[active-tab=true]::after {
     }
 }
 
-.guide-tagline .rarity-6 {
-    color: var(--color-orange);
-}
-
 /* 
     Operator Intro Stats (Position, Tags, Traits)
 */
