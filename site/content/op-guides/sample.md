@@ -1,5 +1,5 @@
 ---
-title: Sample
+title: Amiya
 tagline: Character Tagline
 credits: cortz, namtar
 unlisted: true
