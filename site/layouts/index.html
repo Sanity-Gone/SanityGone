@@ -41,8 +41,12 @@
             {{- range $op := $data -}}
                 {{- $var := (strings.TrimPrefix "p_" $op.potentialItemId ) -}}
                         {{- $oppath := (printf "%s%s" "op-guides/" $op.name ) | urlize -}}
-                        <a class="op-card {{ if not ($.Site.GetPage $oppath) }}card-invalid{{ end }}"
-                        href='{{ with $.Site.GetPage $oppath }}{{ printf "%s%s" $op.name "/guide" | urlize }}{{ end }}'>
+                        <a class="op-card {{ with $.Site.GetPage $oppath }}{{ if not .Params.unlisted }}card-valid{{ end }}{{ end }}"
+                        href='{{ with $.Site.GetPage $oppath }}
+                                {{ if not .Params.unlisted }}
+                                    {{ printf "%s%s" $op.name "/guide" | urlize }}
+                                {{ end }}
+                              {{ end }}'>
                             <div class="op-card-info"> 
                                 <div class="info-active">
                                     <h3>{{ $op.name }}</h3>

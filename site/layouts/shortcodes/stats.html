@@ -4,7 +4,7 @@
             <img class="guide-icon-profession" src='/images/char_profession/icon_profession_{{ .Page.Scratch.Get "profession" }}.png' alt='{{ .Page.Scratch.Get "profession" }}'>
     
             <div class="guide-tagline">
-                <span class='rarity-{{ .Page.Scratch.Get "rarity" | add 1 }}'>{{ .Page.Scratch.Get "rarity" | add 1 }}&#x2B51;</span>
+                <span class='rarity-{{ .Page.Scratch.Get "rarity" | add 1 }}'>{{ .Page.Scratch.Get "rarity" | add 1 }}&#9733;</span>
                 {{ $.Page.Params.tagline }}
             </div>
         </div>
@@ -21,7 +21,7 @@
             </div> -->
             <div class="guide-stats-block">
                 <span>Regular Attack</span>
-                {{ $.Page.Params.attack }}
+                {{ if .Get "attack" }}{{ .Get "attack" }}{{ else }}Physical Damage{{ end }}
             </div>
         </div>
     </div>
