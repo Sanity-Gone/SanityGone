@@ -1,7 +1,9 @@
 ---
-title: Ch'en
+title: Sample
 tagline: Character Tagline
+credits: cortz, namtar
+unlisted: true
 ---
-
 {{< header introduction >}}
-{{< stats attack="Arts Damage">}}
+
+{{< stats attack="Physical Attack" >}}
