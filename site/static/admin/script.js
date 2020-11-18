@@ -7,7 +7,7 @@ CMS.registerEditorComponent({
             widget: "string"
         },
     ],
-    pattern: /{{< stats attack="([a-zA-Z0-9]+)" >}}/,
+    pattern: /{{< stats attack=(.*) >}}/,
     fromBlock: function(match) {
         return {
             attack: match[1]
@@ -30,16 +30,39 @@ CMS.registerEditorComponent({
             widget: "string"
         },
     ],
-    pattern: /{{< header ([a-zA-Z0-9]+) >}}/,
+    pattern: /{{< header (.*) >}}/,
     fromBlock: function(match) {
         return {
             header: match[1]
         };
     },
     toBlock: function(obj) {
-        return `{{< header ${obj.attack} >}}`;
+        return `{{< header ${obj.header} >}}`;
     },
     toPreview: function(obj) {
-        return `{{< header ${obj.attack} >}}`;
+        return `{{< header ${obj.header} >}}`;
+    },
+});
+
+CMS.registerEditorComponent({
+    id: "tabbed",
+    label: "Tabbed Header",
+    fields: [{
+            name: "tabbed",
+            label: "Header Name",
+            widget: "string"
+        },
+    ],
+    pattern: /{{< tabbed (.*) >}}/,
+    fromBlock: function(match) {
+        return {
+            header: match[1]
+        };
+    },
+    toBlock: function(obj) {
+        return `{{< tabbed ${obj.header} >}}`;
+    },
+    toPreview: function(obj) {
+        return `{{< tabbed ${obj.header} >}}`;
     },
 });
