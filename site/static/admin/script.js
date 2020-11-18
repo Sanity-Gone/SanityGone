@@ -7,7 +7,7 @@ CMS.registerEditorComponent({
             widget: "string"
         },
     ],
-    pattern: /{{< stats ([a-zA-Z0-9]+) >}}/,
+    pattern: /{{< stats attack="([a-zA-Z0-9]+)" >}}/,
     fromBlock: function(match) {
         return {
             attack: match[1]
@@ -19,8 +19,9 @@ CMS.registerEditorComponent({
     toPreview: function(obj) {
         return `{{< stats attack="${obj.attack}" >}}`;
     },
-},
-{
+});
+
+CMS.registerEditorComponent({
     id: "header",
     label: "Section Header",
     fields: [{
