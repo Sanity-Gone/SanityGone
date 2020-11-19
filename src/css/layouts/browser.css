@@ -6,8 +6,7 @@
     grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
     grid-gap: 1.6rem;
 
-    justify-content: space-between;
-    /* display: flex; */
+    min-height: 100vh;
 }
 
 @media (--desktop) {

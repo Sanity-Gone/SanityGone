@@ -83,6 +83,21 @@
             <button data-filter=".support">Supporter</button>
             <button data-filter=".special">Specialist</button>
         </div>
+        <div class="filter-group" data-filter-group="class">
+            <div class="filter-title">Attributes</div>
+            <button data-filter=".aoe">AoE</button>
+            <button data-filter=".dps">DPS</button>
+            <button data-filter=".dp-recovery">DP Recovery</button>
+            <button data-filter=".slow">Slow</button>
+            <button data-filter=".survival">Survival</button>
+            <button data-filter=".healing">Healing</button>
+            <button data-filter=".defense">Defense</button>
+            <button data-filter=".debuff">Debuff</button>
+            <button data-filter=".shift">Shift</button>
+            <button data-filter=".crowd-control">Crowd Control</button>
+            <button data-filter=".summon">Summon</button>
+            <button data-filter=".starter">Starter</button>
+        </div>
     </div>
 </div>
 
@@ -119,9 +134,9 @@
             removeFilter(filter);
         }
         // filter isotope
-        // group filters together, inclusive
+        // group filters together, exclusive
         isotope.arrange({
-            filter: filters.join(',')
+            filter: filters.join('')
         });
     });
 
