@@ -25,4 +25,4 @@
         </div>
 {{- end -}}
 
-{{- .Page.Scratch.Add "tablecontents" (slice (.Get 0)) -}}
+{{- .Page.Scratch.Add "tablecontents" (slice (title (humanize (.Get 0)))) -}}
