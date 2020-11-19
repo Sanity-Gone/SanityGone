@@ -1,74 +1,143 @@
 {{ define "main" }}
-    <div class="hero-background"></div>
-    
-    <div class="util-grid hero">
-        <h1>lose your sanity</h1>
-        <p>Sanity; Gone is a community resource for Arknights players, providing quick guides, reviews, and detailed information about the game.</p>
-    </div>
+<div class="hero-background"></div>
 
-    {{ partial "searchbar.html" . }}
+<div class="util-grid hero">
+    <h1>lose your sanity</h1>
+    <p>Sanity; Gone is a community resource for Arknights players, providing quick guides, reviews, and detailed
+        information about the game.</p>
+</div>
 
-    <div class="util-grid op-browser">
-    
-        <div class="browser-grid">
-            {{- $operatorSorted := $.Scratch -}}
-    
-            {{- range $op := sort .Site.Data.game.en.character_table "name" -}}
-                {{- with $op.potentialItemId -}}
-                    {{- if eq (int $op.rarity) 5 -}}
-                        {{- $operatorSorted.Add "6s" (slice $op) -}}
-                    {{- else if eq (int $op.rarity) 4 -}}
-                        {{- $operatorSorted.Add "5s" (slice $op) -}}
-                    {{- else if eq (int $op.rarity) 3 -}}
-                        {{- $operatorSorted.Add "4s" (slice $op) -}}
-                    {{- else if eq (int $op.rarity) 2 -}}
-                        {{- $operatorSorted.Add "3s" (slice $op) -}}
-                    {{- else if eq (int $op.rarity) 1 -}}
-                        {{- $operatorSorted.Add "2s" (slice $op) -}}
-                    {{- else if eq (int $op.rarity) 0 -}}
-                        {{- $operatorSorted.Add "1s" (slice $op) -}}
-                    {{- end -}}
-                {{- end -}}
-            {{- end -}}
-    
-            {{- $data := $operatorSorted.Get "6s" -}}
-            {{- $data = $data | append ($operatorSorted.Get "5s") -}}
-            {{- $data = $data | append ($operatorSorted.Get "4s") -}}
-            {{- $data = $data | append ($operatorSorted.Get "3s") -}}
-            {{- $data = $data | append ($operatorSorted.Get "2s") -}}
-            {{- $data = $data | append ($operatorSorted.Get "1s") -}}
-            
-            {{- range $op := $data -}}
-                {{- $var := (strings.TrimPrefix "p_" $op.potentialItemId ) -}}
-                        {{- $oppath := (printf "%s%s" "op-guides/" $op.name ) | urlize -}}
-                        <a class="op-card {{ with $.Site.GetPage $oppath }}{{ if not .Params.unlisted }}card-valid{{ end }}{{ end }}"
-                        href='{{ with $.Site.GetPage $oppath }}
-                                {{ if not .Params.unlisted }}
-                                    {{ printf "/%s%s" $op.name "/guide" | urlize }}
-                                {{ end }}
-                              {{ end }}'>
-                            <div class="op-card-info"> 
-                                <div class="info-active">
-                                    <h3>{{ $op.name }}</h3>
-                                    <h4 class="rarity-{{ $op.rarity | add 1 }}">{{ strings.Repeat (add $op.rarity 1) "&#9733;" | htmlUnescape }}</h4>
-                                </div>
-                                <div class="info-hover">
-                                    {{ with $.Site.GetPage $oppath }}
-                                        <h4>View Guide</h4>
-                                    {{ else }}
-                                        <h4>Coming Soon</h4>
-                                    {{ end }}
-                                    <h4>🡢</h4>
-                                </div>
-                            </div>
-                            <img src='/images/char_portrait/{{ $var }}_1.png' alt="{{ $op.name }}"  loading="lazy">
-                        </a>
-            {{- end -}}
+<div class="util-grid op-browser">
+
+    <div class="browser-grid">
+        {{- $operatorSorted := $.Scratch -}}
+
+        {{- range $op := sort .Site.Data.game.en.character_table "name" -}}
+        {{- with $op.potentialItemId -}}
+        {{- if eq (int $op.rarity) 5 -}}
+        {{- $operatorSorted.Add "6s" (slice $op) -}}
+        {{- else if eq (int $op.rarity) 4 -}}
+        {{- $operatorSorted.Add "5s" (slice $op) -}}
+        {{- else if eq (int $op.rarity) 3 -}}
+        {{- $operatorSorted.Add "4s" (slice $op) -}}
+        {{- else if eq (int $op.rarity) 2 -}}
+        {{- $operatorSorted.Add "3s" (slice $op) -}}
+        {{- else if eq (int $op.rarity) 1 -}}
+        {{- $operatorSorted.Add "2s" (slice $op) -}}
+        {{- else if eq (int $op.rarity) 0 -}}
+        {{- $operatorSorted.Add "1s" (slice $op) -}}
+        {{- end -}}
+        {{- end -}}
+        {{- end -}}
+
+        {{- $data := $operatorSorted.Get "6s" -}}
+        {{- $data = $data | append ($operatorSorted.Get "5s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "4s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "3s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "2s") -}}
+        {{- $data = $data | append ($operatorSorted.Get "1s") -}}
+
+        {{- range $op := $data -}}
+        {{- $var := (strings.TrimPrefix "p_" $op.potentialItemId ) -}}
+        {{- $oppath := (printf "%s%s" "op-guides/" $op.name ) | urlize -}}
+        <a class='op-card {{ with $.Site.GetPage $oppath }}{{ if not .Params.unlisted }}card-valid {{ end }}{{- end -}} 
+                        {{ $op.position | lower }} {{ $op.profession | lower }} {{ delimit $op.tagList " " | lower }}'
+            href='{{- with $.Site.GetPage $oppath -}}
+                                {{- if not .Params.unlisted -}}
+                                    {{- printf "/%s%s" $op.name "/guide" | urlize -}}
+                                {{- end -}}
+                              {{- end -}}'>
+            <div class="op-card-info">
+                <div class="info-active">
+                    <h3>{{ $op.name }}</h3>
+                    <h4 class="rarity-{{ $op.rarity | add 1 }}">
+                        {{ strings.Repeat (add $op.rarity 1) "&#9733;" | htmlUnescape }}</h4>
+                </div>
+                <div class="info-hover">
+                    {{ with $.Site.GetPage $oppath }}
+                    <h4>View Guide</h4>
+                    {{ else }}
+                    <h4>Coming Soon</h4>
+                    {{ end }}
+                    <h4>🡢</h4>
+                </div>
+            </div>
+            <img src='/images/char_portrait/{{ $var }}_1.png' alt="{{ $op.name }}" loading="lazy">
+        </a>
+        {{- end -}}
+    </div>
+    <div class="op-list">
+        <div class="filter-group" data-filter-group="type">
+            <div class="filter-title">Operator Type</div>
+            <button data-filter=".melee">Melee</button>
+            <button data-filter=".ranged">Ranged</button>
         </div>
-        <div class="op-list">
+        <div class="filter-group" data-filter-group="class">
+            <div class="filter-title">Classes</div>
+            <button data-filter=".pioneer">Vanguard</button>
+            <button data-filter=".warrior">Guard</button>
+            <button data-filter=".sniper">Sniper</button>
+            <button data-filter=".caster">Caster</button>
+            <button data-filter=".medic">Medic</button>
+            <button data-filter=".tank">Defender</button>
+            <button data-filter=".support">Supporter</button>
+            <button data-filter=".special">Specialist</button>
         </div>
     </div>
-    
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+</div>
+
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script>
+    const grid = document.querySelector('.browser-grid');
+    const isotope = new Isotope(grid, {
+        itemSelector: '.op-card',
+        percentPosition: true,
+        layoutMode: 'masonry',
+        masonry: {
+            // use element for option
+            columnWidth: '.op-card',
+            gutter: 16
+          }
+    });
+
+    let filters = [];
+
+    let filtersElem = document.querySelector('.op-list');
+
+    filtersElem.addEventListener('click', function (event) {
+        // only buttons
+        let target = event.target;
+        if (target.nodeName != 'BUTTON') {
+            return;
+        }
+        target.classList.toggle('is-checked');
+        let isChecked = target.classList.contains('is-checked');
+        let filter = target.getAttribute('data-filter');
+        if (isChecked) {
+            addFilter(filter);
+        } else {
+            removeFilter(filter);
+        }
+        // filter isotope
+        // group filters together, inclusive
+        isotope.arrange({
+            filter: filters.join(',')
+        });
+    });
+
+
+    function addFilter(filter) {
+        if (filters.indexOf(filter) == -1) {
+            filters.push(filter);
+        }
+    }
+
+    function removeFilter(filter) {
+        let index = filters.indexOf(filter);
+        if (index != -1) {
+            filters.splice(index, 1);
+        }
+    }
+</script>
 
 {{ end }}

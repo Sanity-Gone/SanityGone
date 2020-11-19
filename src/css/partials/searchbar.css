@@ -1,3 +1,13 @@
+.searchbar-wrapper {
+    width: 100%;
+}
+
+@media (--tablet) {
+    .searchbar-wrapper {
+        width: 25%;
+    }
+}
+
 #searchbar {
     border-radius: 5px;
     border: 0;
@@ -9,6 +19,8 @@
 
 #searchbar_results {
     position: relative; 
+
+    z-index: 20;
 }
 
 #searchbar_results .no_results {
