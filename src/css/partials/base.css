@@ -23,9 +23,9 @@ a:hover {
 }
 
 /*       Header      */
-header {
+.site-header {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin-top: 3rem;
     z-index: 10;
 
@@ -35,7 +35,8 @@ header {
 .site-logo {
     fill: var(--color-white);
     width: 19.2rem;
-    height: 2.4rem;
+    height: 4rem;
+    vertical-align: middle;
 }
 
 .site-wrapper {
@@ -64,6 +65,11 @@ header {
 }
 
 @media (--tablet) {
+    .site-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     .util-grid {
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 1.6rem;
@@ -109,6 +115,7 @@ header {
     text-align: left;
 
     margin-top: 15vh;
+    margin-bottom: 4.8rem;
 }
 
 .hero h1 {
